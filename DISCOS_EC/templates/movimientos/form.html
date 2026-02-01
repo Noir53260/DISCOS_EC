@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div class="toolbar">
+    <div>
+      <h2 style="margin:0">{{ title }}</h2>
+      <div class="small">Ajuste de stock según tipo</div>
+    </div>
+    <a class="btn btn-light" href="/movimientos">Volver</a>
+  </div>
+
+  <form class="form" method="post">
+    <div class="field">
+      <div class="label">Tipo</div>
+      <select name="tipo">
+        <option value="ENTRADA">ENTRADA</option>
+        <option value="SALIDA">SALIDA</option>
+        <option value="TRASLADO">TRASLADO</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <div class="label">Disco</div>
+      <select name="disco_id">
+        <option value="0">Seleccione</option>
+        {% for d in discos %}
+        <option value="{{ d.id }}">{{ d.titulo }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <div class="label">Cantidad</div>
+        <input class="input" name="cantidad" value="" placeholder="Ej: 3">
+      </div>
+
+      <div class="field">
+        <div class="label">Sucursal origen (SALIDA/TRASLADO)</div>
+        <select name="sucursal_origen_id">
+          <option value="">--</option>
+          {% for s in sucursales %}
+          <option value="{{ s.id }}">{{ s.nombre }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="label">Sucursal destino (ENTRADA/TRASLADO)</div>
+      <select name="sucursal_destino_id">
+        <option value="">--</option>
+        {% for s in sucursales %}
+        <option value="{{ s.id }}">{{ s.nombre }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="field">
+      <div class="label">Detalle</div>
+      <input class="input" name="detalle" value="" placeholder="Ej: Compra inicial / Venta / Traslado interno">
+    </div>
+
+    <div class="actions">
+      <button class="btn" type="submit">Registrar</button>
+      <a class="btn btn-light" href="/movimientos">Cancelar</a>
+    </div>
+  </form>
+{% endblock %}

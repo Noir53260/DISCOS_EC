@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div class="toolbar">
+    <div>
+      <h2 style="margin:0">Reportes</h2>
+      <div class="small">SQL con COUNT, SUM y AVG</div>
+    </div>
+  </div>
+
+  {% if kpis %}
+  <div class="grid2">
+    <div class="card"><h3>Total discos</h3><p class="badge">{{ kpis.total_discos }}</p></div>
+    <div class="card"><h3>Total artistas</h3><p class="badge">{{ kpis.total_artistas }}</p></div>
+    <div class="card"><h3>Unidades</h3><p class="badge">{{ kpis.unidades_totales }}</p></div>
+    <div class="card"><h3>Precio promedio</h3><p class="badge">{{ "%.2f"|format(kpis.precio_promedio) }}</p></div>
+  </div>
+  {% endif %}
+
+  <div class="toolbar" style="margin-top:14px">
+    <div><h3 style="margin:0">Stock por género</h3></div>
+  </div>
+  <table class="table">
+    <thead><tr><th>Género</th><th>Unidades</th></tr></thead>
+    <tbody>
+      {% for r in por_genero %}
+      <tr><td>{{ r.genero }}</td><td>{{ r.unidades }}</td></tr>
+      {% endfor %}
+      {% if por_genero|length == 0 %}<tr><td colspan="2" class="small">Sin datos</td></tr>{% endif %}
+    </tbody>
+  </table>
+
+  <div class="toolbar" style="margin-top:14px">
+    <div><h3 style="margin:0">Top artistas por stock</h3></div>
+  </div>
+  <table class="table">
+    <thead><tr><th>Artista</th><th>Unidades</th></tr></thead>
+    <tbody>
+      {% for r in top_artistas %}
+      <tr><td>{{ r.artista }}</td><td>{{ r.unidades }}</td></tr>
+      {% endfor %}
+      {% if top_artistas|length == 0 %}<tr><td colspan="2" class="small">Sin datos</td></tr>{% endif %}
+    </tbody>
+  </table>
+{% endblock %}

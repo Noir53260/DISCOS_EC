@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+  <section class="hero">
+    <h1>Inventario en tiempo real</h1>
+    <p>Registra discos, controla stock y genera reportes con SQL.</p>
+    <div class="grid2">
+      <a class="cardlink" href="/discos">
+        <div class="card">
+          <h3>Gestionar Discos</h3>
+          <p>CRUD completo (título, artista, género, sello, precio, stock).</p>
+        </div>
+      </a>
+      <a class="cardlink" href="/reportes">
+        <div class="card">
+          <h3>Dashboard</h3>
+          <p>COUNT, SUM y AVG para indicadores del inventario.</p>
+        </div>
+      </a>
+    </div>
+  </section>
+{% endblock %}

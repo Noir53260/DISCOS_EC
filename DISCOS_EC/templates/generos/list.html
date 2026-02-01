@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div class="toolbar">
+    <div>
+      <h2 style="margin:0">Géneros</h2>
+      <div class="small">Catálogo</div>
+    </div>
+    <a class="btn" href="/generos/nuevo">Nuevo</a>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Estado</th>
+        <th style="width:220px">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for g in generos %}
+      <tr>
+        <td>{{ g.id }}</td>
+        <td>{{ g.nombre }}</td>
+        <td><span class="badge">{{ "Activo" if g.activo else "Inactivo" }}</span></td>
+        <td>
+          <a class="btn btn-light" href="/generos/{{ g.id }}/editar">Editar</a>
+          <form style="display:inline" method="post" action="/generos/{{ g.id }}/eliminar">
+            <button class="btn btn-danger" type="submit">Eliminar</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+      {% if generos|length == 0 %}
+      <tr><td colspan="4" class="small">Sin datos</td></tr>
+      {% endif %}
+    </tbody>
+  </table>
+{% endblock %}

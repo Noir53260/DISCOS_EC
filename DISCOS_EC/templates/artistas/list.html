@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div class="toolbar">
+    <div>
+      <h2 style="margin:0">Artistas</h2>
+      <div class="small">Catálogo</div>
+    </div>
+    <a class="btn" href="/artistas/nuevo">Nuevo</a>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Provincia</th>
+        <th>Estado</th>
+        <th style="width:220px">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for a in artistas %}
+      <tr>
+        <td>{{ a.id }}</td>
+        <td>{{ a.nombre }}</td>
+        <td>{{ a.provincia_origen }}</td>
+        <td><span class="badge">{{ "Activo" if a.activo else "Inactivo" }}</span></td>
+        <td>
+          <a class="btn btn-light" href="/artistas/{{ a.id }}/editar">Editar</a>
+          <form style="display:inline" method="post" action="/artistas/{{ a.id }}/eliminar">
+            <button class="btn btn-danger" type="submit">Eliminar</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+      {% if artistas|length == 0 %}
+      <tr><td colspan="5" class="small">Sin datos</td></tr>
+      {% endif %}
+    </tbody>
+  </table>
+{% endblock %}

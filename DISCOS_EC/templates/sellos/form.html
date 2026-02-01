@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div class="toolbar">
+    <div>
+      <h2 style="margin:0">{{ title }}</h2>
+      <div class="small">Registro y edición</div>
+    </div>
+    <a class="btn btn-light" href="/sellos">Volver</a>
+  </div>
+
+  <form class="form" method="post">
+    <div class="field">
+      <div class="label">Nombre</div>
+      <input class="input" name="nombre" value="{{ sello.nombre if sello else '' }}" placeholder="Ej: Quito Records">
+    </div>
+
+    <div class="field">
+      <div class="label">Activo</div>
+      <select name="activo">
+        <option value="1" {% if sello and sello.activo %}selected{% endif %}>Sí</option>
+        <option value="0" {% if sello and not sello.activo %}selected{% endif %}>No</option>
+      </select>
+    </div>
+
+    <div class="actions">
+      <button class="btn" type="submit">Guardar</button>
+      <a class="btn btn-light" href="/sellos">Cancelar</a>
+    </div>
+  </form>
+{% endblock %}

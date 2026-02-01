@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div class="toolbar">
+    <div>
+      <h2 style="margin:0">{{ title }}</h2>
+      <div class="small">Registro y edición</div>
+    </div>
+    <a class="btn btn-light" href="/artistas">Volver</a>
+  </div>
+
+  <form class="form" method="post">
+    <div class="field">
+      <div class="label">Nombre</div>
+      <input class="input" name="nombre" value="{{ artista.nombre if artista else '' }}" placeholder="Ej: Julio Jaramillo">
+    </div>
+
+    <div class="field">
+      <div class="label">Provincia de origen</div>
+      <input class="input" name="provincia_origen" value="{{ artista.provincia_origen if artista else '' }}" placeholder="Ej: Guayas">
+    </div>
+
+    <div class="field">
+      <div class="label">Activo</div>
+      <select name="activo">
+        <option value="1" {% if artista and artista.activo %}selected{% endif %}>Sí</option>
+        <option value="0" {% if artista and not artista.activo %}selected{% endif %}>No</option>
+      </select>
+    </div>
+
+    <div class="actions">
+      <button class="btn" type="submit">Guardar</button>
+      <a class="btn btn-light" href="/artistas">Cancelar</a>
+    </div>
+  </form>
+{% endblock %}

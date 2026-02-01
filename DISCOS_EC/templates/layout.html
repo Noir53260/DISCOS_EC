@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{{ title or "DiscosEC" }}</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">DiscosEC</div>
+      <div class="subtitle">Inventario de música ecuatoriana</div>
+    </div>
+    <nav class="nav">
+      <a href="/">Inicio</a>
+      <a href="/discos">Discos</a>
+      <a href="/artistas">Artistas</a>
+      <a href="/generos">Géneros</a>
+      <a href="/sellos">Sellos</a>
+      <a href="/sucursales">Sucursales</a>
+      <a href="/movimientos">Movimientos</a>
+      <a href="/reportes">Reportes</a>
+      <a href="/rutas">Rutas</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    {% if error %}
+      <div class="alert alert-error">{{ error }}</div>
+    {% endif %}
+    {% if ok %}
+      <div class="alert alert-ok">{{ ok }}</div>
+    {% endif %}
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    <div>DiscosEC · Programación II + BD I + Estructuras Discretas</div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div class="toolbar">
+    <div>
+      <h2 style="margin:0">Sellos</h2>
+      <div class="small">Catálogo</div>
+    </div>
+    <a class="btn" href="/sellos/nuevo">Nuevo</a>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Estado</th>
+        <th style="width:220px">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for s in sellos %}
+      <tr>
+        <td>{{ s.id }}</td>
+        <td>{{ s.nombre }}</td>
+        <td><span class="badge">{{ "Activo" if s.activo else "Inactivo" }}</span></td>
+        <td>
+          <a class="btn btn-light" href="/sellos/{{ s.id }}/editar">Editar</a>
+          <form style="display:inline" method="post" action="/sellos/{{ s.id }}/eliminar">
+            <button class="btn btn-danger" type="submit">Eliminar</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+      {% if sellos|length == 0 %}
+      <tr><td colspan="4" class="small">Sin datos</td></tr>
+      {% endif %}
+    </tbody>
+  </table>
+{% endblock %}

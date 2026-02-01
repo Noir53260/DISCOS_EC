@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div class="toolbar">
+    <div>
+      <h2 style="margin:0">Movimientos</h2>
+      <div class="small">Entradas, salidas y traslados</div>
+    </div>
+    <a class="btn" href="/movimientos/nuevo">Nuevo</a>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Fecha</th>
+        <th>Tipo</th>
+        <th>Disco</th>
+        <th>Cantidad</th>
+        <th>Origen</th>
+        <th>Destino</th>
+        <th>Detalle</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for m in movimientos %}
+      <tr>
+        <td>{{ m.id }}</td>
+        <td>{{ m.fecha }}</td>
+        <td><span class="badge">{{ m.tipo }}</span></td>
+        <td>{{ m.disco }}</td>
+        <td>{{ m.cantidad }}</td>
+        <td>{{ m.origen if m.origen else '-' }}</td>
+        <td>{{ m.destino if m.destino else '-' }}</td>
+        <td>{{ m.detalle }}</td>
+      </tr>
+      {% endfor %}
+      {% if movimientos|length == 0 %}
+      <tr><td colspan="8" class="small">Sin datos</td></tr>
+      {% endif %}
+    </tbody>
+  </table>
+{% endblock %}

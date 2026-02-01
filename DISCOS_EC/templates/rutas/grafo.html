@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div class="toolbar">
+    <div>
+      <h2 style="margin:0">Rutas entre sucursales</h2>
+      <div class="small">Grafo no dirigido + BFS (cola) + Dijkstra (camino corto) + pila</div>
+    </div>
+  </div>
+
+  <form class="form" method="get">
+    <div class="row">
+      <div class="field">
+        <div class="label">Origen</div>
+        <select name="origen">
+          {% for n in nodos %}
+          <option value="{{ n }}" {% if n==origen %}selected{% endif %}>{{ n }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="field">
+        <div class="label">Destino</div>
+        <select name="destino">
+          {% for n in nodos %}
+          <option value="{{ n }}" {% if n==destino %}selected{% endif %}>{{ n }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn" type="submit">Calcular</button>
+    </div>
+  </form>
+
+  <div class="grid2" style="margin-top:12px">
+    <div class="card">
+      <h3>BFS desde {{ origen }}</h3>
+      <p class="small">{{ bfs }}</p>
+    </div>
+    <div class="card">
+      <h3>Camino más corto</h3>
+      <p><span class="badge">Distancia: {{ dist }}</span></p>
+      <p class="small">{{ camino }}</p>
+    </div>
+  </div>
+{% endblock %}

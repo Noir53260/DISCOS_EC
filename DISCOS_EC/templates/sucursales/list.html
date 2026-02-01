@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div class="toolbar">
+    <div>
+      <h2 style="margin:0">Sucursales</h2>
+      <div class="small">Locales</div>
+    </div>
+    <a class="btn" href="/sucursales/nuevo">Nueva</a>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Ciudad</th>
+        <th>Estado</th>
+        <th style="width:220px">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for s in sucursales %}
+      <tr>
+        <td>{{ s.id }}</td>
+        <td>{{ s.nombre }}</td>
+        <td>{{ s.ciudad }}</td>
+        <td><span class="badge">{{ "Activo" if s.activo else "Inactivo" }}</span></td>
+        <td>
+          <a class="btn btn-light" href="/sucursales/{{ s.id }}/editar">Editar</a>
+          <form style="display:inline" method="post" action="/sucursales/{{ s.id }}/eliminar">
+            <button class="btn btn-danger" type="submit">Eliminar</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+      {% if sucursales|length == 0 %}
+      <tr><td colspan="5" class="small">Sin datos</td></tr>
+      {% endif %}
+    </tbody>
+  </table>
+{% endblock %}
