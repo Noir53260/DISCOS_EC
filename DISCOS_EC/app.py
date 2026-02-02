@@ -1,5 +1,7 @@
-# Comentario de prueba subido a GitHub
 
+# Comentario de prueba subido a GitHub (actualizado)
+# SI VES ESTO ES EL ARCHIVO CORRECTO ✅
+# ESTA ES LA LINEA NUEVA 2026
 
 import sys
 import os
