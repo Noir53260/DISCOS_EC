@@ -2,6 +2,7 @@
 # Comentario de prueba subido a GitHub (actualizado)
 # SI VES ESTO ES EL ARCHIVO CORRECTO ✅
 #Hola mundo
+#confirmar que funciona 
 import sys
 import os
 
