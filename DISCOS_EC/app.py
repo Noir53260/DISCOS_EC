@@ -2,6 +2,7 @@
 # Comentario de prueba subido a GitHub (actualizado)
 # SI VES ESTO ES EL ARCHIVO CORRECTO ✅
 # ESTA ES LA LINEA NUEVA 2026
+#comentario por otra cuenta
 #goku 5326 
 import sys
 import os
